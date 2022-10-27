@@ -3,22 +3,15 @@ package ru.netology.stats;
 public class StatsService {
     public long sumSales(long[] sales) {
         long sum = 0;
-        for (int i = 0; i < sales.length; i++) {
-            sum = sum + sales[i];
+        for (long sale : sales) {
+            sum = sum + sale;
         }
         return sum;
     }
 
-    public int averageSales(long[] sales) {
-        int average = 0;
-        if (sales.length > 0) {
-            int sum = 0;
-            for (int i = 0; i < sales.length; i++) {
-                sum += sales[i];
-            }
-            average = sum / sales.length;
-        }
-        return average;
+    public long averageSales(long[] sales) {
+        long sum = sumSales(sales);
+        return sum / sales.length;
     }
 
     public int maxSales(long[] sales) {
@@ -49,16 +42,8 @@ public class StatsService {
         return minMonth + 1;
     }
 
-    public int belowAverage(long[] sales) {
-        long average = 0;
-        if (sales.length > 0) {
-            int sum = 0;
-            for (int i = 0; i < sales.length; i++) {
-                sum += sales[i];
-            }
-            average = sum / sales.length;
-        }
-
+    public long belowAverage(long[] sales) {
+        long average = averageSales(sales);
         int monthNumber = 0;
         int month = 0;
         for (long sale : sales) {
@@ -66,25 +51,18 @@ public class StatsService {
                 monthNumber = month;
                 month = month + 1;
                 /*
-                Для вывода значений продаж ниже среднего:
+                Для вывода продаж ниже среднего:
                 System.out.println("Продажи были ниже среднего: " + sale);
                  */
+
                 monthNumber++;
             }
         }
         return monthNumber;
     }
 
-    public int aboveAverage(long[] sales) {
-        long average = 0;
-        if (sales.length > 0) {
-            int sum = 0;
-            for (int i = 0; i < sales.length; i++) {
-                sum += sales[i];
-            }
-            average = sum / sales.length;
-        }
-
+    public long aboveAverage(long[] sales) {
+        long average = averageSales(sales);
         int monthNumber = 0;
         int month = 0;
         for (long sale : sales) {
@@ -92,9 +70,10 @@ public class StatsService {
                 monthNumber = month;
                 month = month + 1;
                 /*
-                Для вывода значений продаж выше среднего:
+                Для вывода продаж выше среднего:
                 System.out.println("Продажи были выше среднего: " + sale);
                  */
+
                 monthNumber++;
             }
         }
